@@ -172,17 +172,12 @@ body {
 }
 .open-cart span {
   position: absolute;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 13px;
-  left: 23px;
+  top: 15px;
+  left: 25px;
   border-radius: 50%;
-  background-color: #eb17b6;
-  color: #fff;
-  font-size: 18px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .products {
