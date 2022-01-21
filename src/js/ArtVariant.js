@@ -19,93 +19,93 @@ const products = [{
         "id": "2",
         "title": "Samsung Galaxy A52",
         "image": "Samsung Galaxy A52 8_256Gb.jpg",
-        "price": "8000"
+        "price": "8 000"
     },
     {
         "id": "3",
         "title": "Xiaomi Redmi Note 10 Pro",
         "image": "Xiaomi Redmi Note 10 Pro.jpg",
-        "price": "10000"
+        "price": "10 000"
     },
     {
         "id": "4",
         "title": "Nokia G20 4/64Gb",
         "image": "Nokia G20 4_64Gb.jpg",
-        "price": "8000"
+        "price": "8 000"
     },
     {
         "id": "5",
         "title": "Apple iPhone 13 128Gb",
         "image": "Apple iPhone 13 128Gb.jpg",
-        "price": "32000"
+        "price": "32 000"
     },
     {
         "id": "6",
         "title": "Doogee N40 Pro 6-/28Gb",
         "image": "Doogee N40 Pro 6-128Gb.jpg",
-        "price": "4000"
+        "price": "4 000"
     },
     {
         "id": "7",
         "title": "Huawei P40 Lite 6/128Gb",
         "image": "Huawei P40 Lite 6-128Gb.jpg",
-        "price": "6000"
+        "price": "6 000"
     },
     {
         "id": "8",
         "title": "LG V50 ThinQ 5G 6/128Gb",
         "image": "LG V50 ThinQ 5G 6-128Gb.jpg",
-        "price": "9800"
+        "price": "9 800"
     },
     {
         "id": "9",
         "title": "Motorola Moto G60 6/128Gb",
         "image": "Motorola Moto G60 6_128Gb.jpg",
-        "price": "11350"
+        "price": "11 350"
     },
     {
         "id": "10",
         "title": "OnePlus Nord 2 8/128Gb",
         "image": "OnePlus Nord 2 8_128Gb.jpg",
-        "price": "13250"
+        "price": "13 250"
     },
     {
         "id": "11",
         "title": "Oukitel K15 Plus 3/32Gb",
         "image": "Oukitel K15 Plus 3-32Gb.jpg",
-        "price": "4000"
+        "price": "4 000"
     },
 
     {
         "id": "12",
         "title": "Realme 8 6/128Gb",
         "image": "Realme 8 6_128Gb.jpg",
-        "price": "7777"
+        "price": "7 777"
     },
     {
         "id": "13",
         "title": "Samsung Galaxy M52 6/128Gb",
         "image": "Samsung Galaxy M52 6_128Gb.jpg",
-        "price": "14320"
+        "price": "14 320"
     },
 
     {
         "id": "14",
         "title": "Sony Xperia Pro-I 12/512Gb",
         "image": "Sony Xperia Pro-I 12-512Gb.jpg",
-        "price": "42350"
+        "price": "42 350"
     },
     {
         "id": "15",
         "title": "Xiaomi Poco X3 Pro 6/128Gb",
         "image": "Xiaomi Poco X3 Pro 6_128Gb.jpg",
-        "price": "5800"
+        "price": "5 800"
     },
     {
         "id": "16",
         "title": "ZTE Blade V30 4/128Gb",
         "image": "ZTE Blade V30 4-128Gb.jpg",
-        "price": "7000"
+        "price": "7 000"
     },
     {
         "id": "17",
@@ -235,11 +235,39 @@ const products = [{
     }
 ];
 
+// const cart = {
+//     '1': {
+//         "id": "1",
+//         "title": "Apple iPhone 11 128Gb",
+//         "price": "10000",
+//         "count": 1
+//     },
+//     '2': {
+//         "id": "2",
+//         "title": "Samsung Galaxy A52",
+//         "price": "8 000",
+//         "count": 1
+//     },
+//     '3': {
+//         "id": "3",
+//         "title": "Xiaomi Redmi Note 10 Pro",
+//         "price": "10 000",
+//         "count": 1
+//     },
+//     '4': {
+//         "id": "4",
+//         "title": "Nokia G20 4/64Gb",
+//         "price": "8 000",
+//         "count": 1
+//     }
+// }
+
+
 const list_element = document.getElementById('list');
 const pagination_element = document.getElementById('pagination');
 
 let current_page = 1;
-let rows = 8;
+let rows = 4;
 
 const input = document.querySelector('.search-form__input');
 input.oninput = function() {
@@ -276,7 +304,7 @@ function DisplayList(items, wrapper, rows_per_page, page) {
                             <div class="item-product__content">
                                 <h3 class="item-product__title">${item.title}</h3>
                             </div>
-                            <div class="item-product__price">${item.price}</div>
+                            <div class="item-product__price">${item.price} UAH & iD: ${item.id}</div>
                             <div class="item-product__actions actions-product">
                                 <div class="actions-product__body">
                                         <button class="add-button btn" data-id="${item.id}">Add to cart</button>
@@ -289,7 +317,8 @@ function DisplayList(items, wrapper, rows_per_page, page) {
             `
         wrapper.appendChild(item_element);
     }
-    createCartButtons();
+    // renderCart()
+    // createAddToCartButton();
 }
 
 function SetupPagination(items, wrapper, rows_per_page) {
@@ -326,89 +355,49 @@ SetupPagination(products, pagination_element, rows);
 
 // ----------------------К__О__Р__З__И__Н__А------------------------
 
-const cartCont = document.getElementById('cart-table');
+const cart = [];
 
-function createCartButtons() {
-    let addButtons = document.querySelectorAll('.add-button');
+function createAddToCartButton() {
+    const addButtons = document.querySelectorAll('.add-button');
     addButtons.forEach(addButton => {
         addButton.addEventListener('click', addToCart);
     });
+
 };
 
-function getCartData() {
-    return JSON.parse(localStorage.getItem('cart'));
-}
-
-function setCartData(o) {
-    localStorage.setItem('cart', JSON.stringify(o));
-    return false;
-}
 
 function addToCart(e) {
-    this.disabled = true;
-    var cartData = getCartData() || {},
-        parentBox = this.closest('.item-product'),
-        itemId = parentBox.dataset.id,
-        itemTitle = parentBox.querySelector('.item-product__title').innerHTML,
-        itemPrice = parentBox.querySelector('.item-product__price').innerHTML;
-    if (cartData.hasOwnProperty(itemId)) {
-        cartData[itemId][2] += 1;
-    } else {
-        cartData[itemId] = [itemTitle, itemPrice, 1];
-    }
-    if (!setCartData(cartData)) {
-        this.disabled = false;
-    }
-    console.log(cartData);
-    return false;
+    let itemId = e.target.dataset.id;
+
+
+
+
+
+    //     let cartEntry = {
+    //         id: itemId,
+    //         count: 0
+    //     };
 }
 
-function renderCart(e) {
 
-    var cartData = getCartData(),
-        totalItems = '',
-        totalCount = 0,
-        totalSum = 0;
 
-    if (cartData !== null) {
-        totalItems = '<table class="shopping_list"><tr><th>Model</th><th>Price</th><th>Count</th><th></th></tr>';
-        for (var items in cartData) {
-            totalItems += '<tr>';
-            for (var i = 0; i < cartData[items].length; i++) {
-                totalItems += '<td>' + cartData[items][i] + '</td>';
-            }
-            totalSum += cartData[items][1] * cartData[items][2];
-            totalCount += cartData[items][2];
-            totalItems += '<td><button class="remove-button cart-btn btn" data-id="' + items + '">-</button><button class="add-button cart-btn btn" data-id="' + items + '">+</button></td>';
 
-            totalItems += '</tr>';
-        }
-        totalItems += '<tr><td><strong>Итого</strong></td><td><span id="total_sum">' + totalSum + '</span> UAH</td><td><span id="total_count">' + totalCount + '</span> pcs.</td><td><button id="clear_cart"class="delete-button btn"data-id="1">clear cart</button></td></tr>';
-        totalItems += '<table>';
-        cartCont.innerHTML = totalItems;
-        spanCart.innerHTML = totalCount;
-    } else {
-        spanCart.innerHTML = 'В корзине пусто!';
-    }
-    return false;
-}
 
-createCartButtons();
+createAddToCartButton();
 
 
 
 
 // ---------------------popup cart--------------------------
 let popup = document.getElementById('popupCart');
-let popupToggle = document.querySelector('.open-cart');
+let popupToggle = document.querySelector('.open-cart')
 let popupClose = document.querySelector('.close');
-let spanCart = document.querySelector('.cart-span');
 
 
 
 popupToggle.addEventListener('click', function() {
     popup.style.display = "block";
-    renderCart();
+    openCart();
 });
 
 popupClose.addEventListener('click', function() {
