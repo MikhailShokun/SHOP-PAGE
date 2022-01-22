@@ -159,7 +159,9 @@ body {
 }
 
 .open-cart {
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-width: 60px;
   min-height: 60px;
   background: url("../img/basket.png") no-repeat;
@@ -171,10 +173,8 @@ body {
   opacity: 0.3;
 }
 .open-cart span {
-  position: absolute;
-  top: 15px;
-  left: 25px;
-  border-radius: 50%;
+  padding-left: 10px;
+  padding-bottom: 8px;
   color: #000;
   font-size: 20px;
   font-weight: 600;
@@ -375,10 +375,10 @@ li.active {
 
 .close {
   position: absolute;
-  right: 10px;
-  top: 0px;
+  top: 5px;
+  right: 15px;
   color: #000;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 600;
   margin-right: auto;
 }
@@ -435,7 +435,7 @@ li.active {
   height: 30px;
 }
 
-.delete-button {
+.clear-button {
   font-size: 16px;
   height: 30px;
   background-color: #d419cb;
