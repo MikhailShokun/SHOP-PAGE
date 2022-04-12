@@ -1,2 +1,2 @@
 GitHub Pages:
-https://mikhailshokun.github.io/shop_page/
+https://mikhailshokun.github.io/SHOP-PAGE/
